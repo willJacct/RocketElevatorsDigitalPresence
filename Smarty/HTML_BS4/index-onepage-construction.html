@@ -1283,7 +1283,7 @@
 
 					<header class="text-center mb-60">
 						<h2>Contact Us</h2>
-						<p class="lead font-lato">Lorem ipsum dolor sit amet adipiscium elit</p>
+						<p class="lead font-lato">Our trained representatives will be able to answer any concerns.</p>
 						<hr />
 					</header>
 
@@ -1347,7 +1347,11 @@
 
 									<div class="row">
 											<div class="col-md-4">
-												<label for="contact:name">Full Name *</label>
+												<label for="contact:name">Contact Full Name *</label>
+												<input required type="text" value="" class="form-control" name="contact[name][required]" id="contact:name">
+											</div>
+											<div class="col-md-4">
+												<label for="contact:name">Business Name *</label>
 												<input required type="text" value="" class="form-control" name="contact[name][required]" id="contact:name">
 											</div>
 											<div class="col-md-4">
@@ -1358,10 +1362,8 @@
 												<label for="contact:phone">Phone</label>
 												<input type="text" value="" class="form-control" name="contact[phone]" id="contact:phone">
 											</div>
-									</div>
-									<div class="row">
-											<div class="col-md-8">
-												<label for="contact:subject">Subject *</label>
+											<div class="col-md-4">
+												<label for="contact:subject">Project Name *</label>
 												<input required type="text" value="" class="form-control" name="contact[subject][required]" id="contact:subject">
 											</div>
 											<div class="col-md-4">
@@ -1369,15 +1371,23 @@
 												<select class="form-control pointer" name="contact[department]">
 													<option value="">--- Select ---</option>
 													<option value="Marketing">Marketing</option>
-													<option value="Webdesign">Webdesign</option>
-													<option value="Architecture">Architecture</option>
+													<option value="Management">Management</option>
+													<option value="Other">Other</option>
 												</select>
 											</div>
 									</div>
 									<div class="row">
+											
+											<div class="col-md-12">
+												<label for="contact:message">Project Description *</label>
+												<textarea required maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>
+											</div>
+											
+									</div>
+									<div class="row">
 											<div class="col-md-12">
 												<label for="contact:message">Message *</label>
-												<textarea required maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>
+												<textarea required maxlength="5000" rows="4" class="form-control" name="contact[message]" id="contact:message"></textarea>
 											</div>
 									</div>
 									<div class="row">
@@ -1409,28 +1419,15 @@
 
 							<h2>Visit Us</h2>
 
-							<!-- 
-							Available heights
-								h-100
-								h-150
-								h-200
-								h-250
-								h-300
-								h-350
-								h-400
-								h-450
-								h-500
-								h-550
-								h-600
-							-->
-							<div id="map2" class="h-400 grayscale"></div>
-
+							
+							
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.5158879660034!2d-73.56930918444276!3d45.459410779100956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91067ae856153%3A0x5ba73b190d3e61d2!2s4468%20Wellington%20St%2C%20Verdun%2C%20QC%20H4G%202G4!5e0!3m2!1sen!2sca!4v1597267698372!5m2!1sen!2sca" width="340" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 							<hr />
 
 							<p>
-								<span class="block"><strong><i class="fa fa-map-marker"></i> Address:</strong> Street Name, City Name, Country</span>
-								<span class="block"><strong><i class="fa fa-phone"></i> Phone:</strong> <a href="tel:1800-555-1234">1800-555-1234</a></span>
-								<span class="block"><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:mail@yourdomain.com">mail@yourdomain.com</a></span>
+								<span class="block"><strong><i class="fa fa-map-marker"></i> Address:</strong> 4468 Rue Wellington, Verdun, Quebec, H4G 1W5</span>
+								<span class="block"><strong><i class="fa fa-phone"></i> Phone:</strong> <a href="tel:1-581-701-0303">581-701-0303</a></span>
+								<span class="block"><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:info@codeboxx.biz">info@codeboxx.biz</a></span>
 							</p>
 
 						</div>
@@ -1459,9 +1456,9 @@
 
 							<!-- Small Description -->
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet hendrerit volutpat. Sed in nunc nec ligula consectetur mollis in vel justo. Vestibulum ante ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet hendrerit volutpat.
+								<em>With over 40 years of experience in providing quality elevator needs, our company can solve all of your elevator related issues.</em>
 							</p>
-							<h2>(800) 123-4567</h2>
+							<h2>581-701-0303</h2>
 						</div>
 						<!-- /col #1 -->
 
@@ -1470,7 +1467,7 @@
 							<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
 
 							<!-- Newsletter Form -->
-							<p>Subscribe to Our Newsletter to get Important News & Offers</p>
+							<p>Subscribe to Our Newsletter to Get Important News & Offers</p>
 
 							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
 								<div class="input-group">
@@ -1499,7 +1496,7 @@
 							<li>&bull;</li>
 							<li><a href="#">Privacy</a></li>
 						</ul>
-						&copy; All Rights Reserved, Company LTD
+						&copy; All Rights Reserved, Rocket Elevators LTD
 					</div>
 				</div>
 
