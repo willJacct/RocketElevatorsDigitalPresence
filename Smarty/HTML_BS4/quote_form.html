@@ -29,9 +29,16 @@
 		<link href="assets/css/color_scheme/yellow.css" rel="stylesheet" type="text/css" id="color_scheme" />
 
 		<script>
-			function buildingType(){
+			function buildingType(){ // selects the type of building ,saves into variable for use by other fns
 				var type = document.getElementById('type').value;
+				//return type;
 				console.log(type);}
+
+			function Apts(){
+				var apts= document.getElementById('apts').value;
+				console.log(apts);
+				//return apts;
+			}
 		</script>
 	</head>
 
@@ -206,7 +213,7 @@
 
 
 			<section id="home">
-				
+					<!--selection box-->
 					<div>
 						<label for="">Choose your building type</label>
 						<select id ='type' onchange="buildingType()">
@@ -217,6 +224,13 @@
 						</select>
 					</div>
 				<br><br>
+
+				<!--residential-->
+				<div>
+					<label for="apts">Number of Apartments:</label>
+					<input type="number" id="apts" name="apts"> 
+					<button onclick="Apts()">Click to set # of apartments</button>
+					</div>
 			<hr class="m-0" /><!-- 1px line separator -->
 
 
