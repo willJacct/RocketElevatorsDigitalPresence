@@ -35,6 +35,7 @@
 				return document.getElementById('type').value;
 				//return type;
 				}
+
 				// next fns return # of apts, floors, basements
 			function apts(){ 
 				return document.getElementById('apts').value;
@@ -63,7 +64,19 @@
 				else {
 					var mult = floors()/20;
 					return Math.round(resElNumbers()/6)*mult;
+					}
 				}
+
+			function biz(){
+				return document.getElementById('biz').value;
+			}
+
+			function park(){
+				return document.getElementById('park').value;
+			}
+
+			function com_shafts(){
+				return document.getElementById('com_shafts').value;
 			}
 				
 		</script>
@@ -269,6 +282,27 @@
 					<input type="number" id="basements" name="basements"> 
 					<button onclick="basements()">Click to set # of basements</button>
 				</div>
+				<br><br><br>
+
+				<!--commercial-->
+				<div>
+					<label for="biz">Number of Unique Businesses:</label>
+					<input type="number" id="biz" name="biz"> 
+					<button onclick="biz()">Click to set # of unique businesses</button>
+				</div>
+				<div>
+					<label for="park">Number of Parking Spaces:</label>
+					<input type="number" id="park" name="park"> 
+					<button onclick="park()">Click to set # of parking spaces</button>
+				</div>
+				<div>
+					<label for="com_shafts">Number of Elevators Shafts/Cages:</label>
+					<input type="number" id="com_shafts" name="com_shafts"> 
+					<button onclick="com_shafts()">Click to set # of elevators/cages</button>
+				</div>
+				<br><br><br>
+				
+				
 			<hr class="m-0" /><!-- 1px line separator -->
 
 
