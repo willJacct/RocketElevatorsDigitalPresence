@@ -61,7 +61,8 @@
 				if (floors() < 20){
 				return Math.round(resElNumbers()/6);}
 				else {
-					return Math.round(resElNumbers()/6)*2;
+					var mult = floors()/20;
+					return Math.round(resElNumbers()/6)*mult;
 				}
 			}
 				
