@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Rocket Elevators - Residential Landing page</title>
+		<title>Rocket Elevators - Quote page</title>
 		<meta name="description" content="" />
 		<meta name="Author" content="Will Johnson (codeBoxx Genesis)" />
 
@@ -29,16 +29,35 @@
 		<link href="assets/css/color_scheme/yellow.css" rel="stylesheet" type="text/css" id="color_scheme" />
 
 		<script>
-			function buildingType(){ // selects the type of building ,saves into variable for use by other fns
-				var type = document.getElementById('type').value;
-				//return type;
-				console.log(type);}
 
-			function Apts(){
-				var apts= document.getElementById('apts').value;
-				console.log(apts);
-				//return apts;
-			}
+			var apts,floors,basements =0;
+			function buildingType(){ // selects the type of building ,saves into variable for use by other fns
+				return document.getElementById('type').value;
+				//return type;
+				}
+				// next fns return # of apts, floors, basements
+			function apts(){ 
+				return document.getElementById('apts').value;
+				//console.log(apts);
+				}
+			
+			function floors(){
+				 return document.getElementById('floors').value;
+				console.log(floors);
+				//alert(floors);
+				}
+
+			function basements(){
+				return document.getElementById('basements').value;
+				//console.log(basements);
+				}
+
+			function resElNumbers(){
+				return apts()/floors();
+				//console.log(resElNumbers);
+				}
+			
+				
 		</script>
 	</head>
 
@@ -226,11 +245,22 @@
 				<br><br>
 
 				<!--residential-->
+					
 				<div>
 					<label for="apts">Number of Apartments:</label>
 					<input type="number" id="apts" name="apts"> 
-					<button onclick="Apts()">Click to set # of apartments</button>
-					</div>
+					<button onclick="apts()">Click to set # of apartments</button>
+				</div>
+				<div>
+					<label for="floors">Number of Floors:</label>
+					<input type="number" id="floors" name="floors"> 
+					<button onclick="floors()">Click to set # of apartments</button>
+				</div>
+				<div>
+					<label for="basements">Number of Basements:</label>
+					<input type="number" id="basements" name="basements"> 
+					<button onclick="basements()">Click to set # of basements</button>
+				</div>
 			<hr class="m-0" /><!-- 1px line separator -->
 
 
