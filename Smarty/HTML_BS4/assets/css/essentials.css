@@ -12073,7 +12073,7 @@ div.testimonial>figure>img {
 }
 .testimonial cite span {
 	display:block;
-	color:#888;
+	color:rgb(73, 63, 163);
 	font-size:12px;
 	font-weight:300;
 }
