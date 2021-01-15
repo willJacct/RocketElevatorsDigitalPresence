@@ -63,8 +63,8 @@
 				if (floors() < 20){
 				return Math.round(resElNumbers()/6);}
 				else {
-					var mult = floors()/20;
-					return Math.round(resElNumbers()/6)*mult;
+					var colMult = floors()/20;
+					return Math.round(resElNumbers()/6)*colMult;
 					}
 				}
 
@@ -88,11 +88,13 @@
 				return document.getElementById('occupants').value;
 			}
 			//parseFloat is necessary or else the results will append, not add!!
+			//mult issue, peut etre, ask later
 			function corp_hyb_shafts(){
 				var occ = occupants() * (parseFloat(floors()) + parseFloat(basements()));
 				var shafts = occ/1000;
-				var mult = (floors()/20)+1;
-				return mult;
+				var colMult = 1+   Math.round((parseFloat(floors()) + parseFloat(basements()))   / 20);
+				var total = shafts * colMult;
+				return Math.round(total);
 			}
 				
 		</script>
