@@ -40,6 +40,7 @@
 		<script>
 
 			
+			
 			function buildingType(){ // selects the type of building ,saves into variable for use by other fns
 				return document.getElementById('building-type').value;
 				//return type;
@@ -373,6 +374,16 @@
 				<!--commercial-->
 				<section id ='comm' class ='hide_sec'>
 					<div>
+						<label for="floors">Number of Floors:</label>
+						<input type="number" id="floors" name="floors"> 
+						<button onclick="floors()">Click to set # of floors</button>
+					</div>
+					<div>
+						<label for="basements">Number of Basements:</label>
+						<input type="number" id="basements" name="basements"> 
+						<button onclick="basements()">Click to set # of basements</button>
+					</div>
+					<div>
 						<label for="biz">Number of Unique Businesses:</label>
 						<input type="number" id="biz" name="biz"> 
 						<button onclick="biz()">Click to set # of unique businesses</button>
@@ -391,8 +402,23 @@
 				</section>	
 				<br><br><br>
 
-				<!--corporate and hybrid-->
+				<!--corporate-->
 				<section id ='corp' class ='hide_sec'>
+					<div>
+						<label for="floors">Number of Floors:</label>
+						<input type="number" id="floors" name="floors"> 
+						<button onclick="floors()">Click to set # of floors</button>
+					</div>
+					<div>
+						<label for="basements">Number of Basements:</label>
+						<input type="number" id="basements" name="basements"> 
+						<button onclick="basements()">Click to set # of basements</button>
+					</div>
+					<div>
+						<label for="park">Number of Parking Spaces:</label>
+						<input type="number" id="park" name="park"> 
+						<button onclick="park()">Click to set # of parking spaces</button>
+					</div>
 					<div>
 						<label for="tenants">Number of Separate Tenant Companies:</label>
 						<input type="number" id="tenant" name="tenants"> 
@@ -407,6 +433,31 @@
 				
 				<!--hybrid-->
 				<section id='hyb' class='hide_sec'>
+					<div>
+						<label for="floors">Number of Floors:</label>
+						<input type="number" id="floors" name="floors"> 
+						<button onclick="floors()">Click to set # of floors</button>
+					</div>
+					<div>
+						<label for="basements">Number of Basements:</label>
+						<input type="number" id="basements" name="basements"> 
+						<button onclick="basements()">Click to set # of basements</button>
+					</div>
+					<div>
+						<label for="tenants">Number of Separate Tenant Companies:</label>
+						<input type="number" id="tenant" name="tenants"> 
+						<button onclick="tenants()">Click to set # of separate tenant companies</button>
+					</div>
+					<div>
+						<label for="park">Number of Parking Spaces:</label>
+						<input type="number" id="park" name="park"> 
+						<button onclick="park()">Click to set # of parking spaces</button>
+					</div>
+					<div>
+						<label for="occupants">Number of Occupants per Floor:</label>
+						<input type="number" id="occupants" name="occupants"> 
+						<button onclick="occupants()">Click to set # of occupants per floor</button>
+					</div>
 					<div>
 						<label for="business-hours">Number of Open Hours:</label>
 						<input type="number" id="business-hours" name="business-hours" max ='24'> 
