@@ -36,6 +36,14 @@
 				display: block; 
 			}
 
+			.center {
+
+				margin: auto;
+				width: 20%;
+				border: 2px solid #4370d3;
+				padding: 5px;
+
+			}
 		</style>
 		<script>
 
@@ -340,7 +348,7 @@
 
 			<section id="home">
 					<!--selection box-->
-					<div>
+					<div class ='center'>
 						<label for="">Choose your building type</label>
 						<select id ='building-type' onchange="display_fields()" >
 							<option id='residential' value="residential">Residential</option>
@@ -352,7 +360,7 @@
 				<br><br>
 
 				<!--residential-->
-				<section id='res' class='hide_sec'>
+				<section id='res' class='hide_sec center'>
 					<div>
 						<label for="apts">Number of Apartments:</label>
 						<input type="number" id="apts" name="apts"> 
@@ -372,7 +380,7 @@
 				<br><br><br>
 
 				<!--commercial-->
-				<section id ='comm' class ='hide_sec'>
+				<section id ='comm' class ='hide_sec center'>
 					<div>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
@@ -403,7 +411,7 @@
 				<br><br><br>
 
 				<!--corporate-->
-				<section id ='corp' class ='hide_sec'>
+				<section id ='corp' class ='hide_sec center'>
 					<div>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
@@ -432,7 +440,7 @@
 				</section>	
 				
 				<!--hybrid-->
-				<section id='hyb' class='hide_sec'>
+				<section id='hyb' class='hide_sec center'>
 					<div>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
@@ -467,13 +475,14 @@
 
 				
 				<br><br><br><br>
-				<div>
+				<div class ='center'>
 					<input type="radio" name="product-lines" id= 'standard' value="standard"> Standard
 					<input type="radio" name="product-lines" id= 'premium' value="premium"> Premium
 					<input type="radio" name="product-lines" id= 'excelium' value="excelium"> Excelium
+				
+				<button style='background-color:rgb(66, 91, 173)' onclick="display_service_cost()" >Click</button>
 				</div>
-				<button style='background-color:rgb(66, 91, 173)' onclick="display_service_cost()">Click</button>
-			<hr class="m-0" /><!-- 1px line separator -->
+				<hr class="m-0" /><!-- 1px line separator -->
 
 
 			<!-- BUTTON CALLOUT -->
@@ -497,9 +506,9 @@
 
 					<div class="text-center">
 						<h2 class="fs-40 fw-300">Since 1976</h2>
-						<a class="btn btn-default btn-lg" href="#">Request a Quote<i class="fa fa-angle-right"></i></a> 
+						<a class="btn btn-default btn-lg" href="#top">Request a Quote<i class="fa fa-angle-right"></i></a> 
 						&nbsp; OR &nbsp; 
-						<a class="btn btn-blue btn-lg" href="#">Contact Us <i class="fa fa-angle-right"></i></a>
+						<a class="btn btn-blue btn-lg" href="#contact">Contact Us <i class="fa fa-angle-right"></i></a>
 					</div>
 
 				</div>
@@ -723,25 +732,7 @@
 						<!-- /col #1 -->
 
 						<!-- col #2 -->
-						<div class="col-md-4">
-							<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
-
-							<!-- Newsletter Form -->
-							<p>Subscribe to Our Newsletter to Get Important News & Offers</p>
-
-							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-									<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
-									<span class="input-group-btn">
-										<button class="btn btn-success" type="submit">Subscribe</button>
-									</span>
-								</div>
-							</form>
-							<!-- /Newsletter Form -->
-
-
-						</div>
+						
 						<!-- /col #2 -->
 
 					</div>
