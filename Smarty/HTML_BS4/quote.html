@@ -40,7 +40,6 @@
 
 				margin: auto;
 				width: 20%;
-				border: 2px solid #4370d3;
 				padding: 5px;
 
 			}
@@ -101,7 +100,10 @@
 				return document.getElementById('apts').value;
 				//console.log(apts);
 				}
-			
+			/* function apts2(){
+				document.getElementById('apts').addEventListener('change', apts())
+			}*/
+
 			function floors(){
 				 return document.getElementById('floors').value;
 				console.log(floors);
@@ -152,6 +154,8 @@
 			}
 			//parseFloat is necessary or else the results will append, not add!!
 			//mult issue, peut etre, ask later
+
+			
 			function corp_hyb_shafts(){
 				var occ = occupants() * (parseFloat(floors()) + parseFloat(basements()));
 				var shafts = occ/1000;
@@ -181,27 +185,7 @@
 		</script>
 	</head>
 
-	<!--
-		AVAILABLE BODY CLASSES:
-		
-		smoothscroll 			= create a browser smooth scroll
-		enable-animation		= enable WOW animations
-
-		bg-grey					= grey background
-		grain-grey				= grey grain background
-		grain-blue				= blue grain background
-		grain-green				= green grain background
-		grain-blue				= blue grain background
-		grain-orange			= orange grain background
-		grain-yellow			= yellow grain background
-		
-		boxed 					= boxed layout
-		pattern1 ... patern11	= pattern background
-		menu-vertical-hide		= hidden, open on click
-		
-		BACKGROUND IMAGE [together with .boxed class]
-		data-background="assets/images/_Rocket Elevators/boxed_background/1.jpg"
-	-->
+	
 	<body class="grain-blue">
 
 		<!-- SLIDE TOP -->
@@ -240,32 +224,7 @@
 		<!-- wrapper -->
 		<div id="wrapper">
 
-			<!-- 
-				AVAILABLE HEADER CLASSES
-
-				Default nav height: 96px
-				.header-md 		= 70px nav height
-				.header-sm 		= 60px nav height
-
-				.b-0 		= remove bottom border (only with transparent use)
-				.transparent	= transparent header
-				.translucent	= translucent header
-				.sticky			= sticky header
-				.static			= static header
-				.dark			= dark header
-				.bottom			= header on bottom
-				
-				shadow-before-1 = shadow 1 header top
-				shadow-after-1 	= shadow 1 header bottom
-				shadow-before-2 = shadow 2 header top
-				shadow-after-2 	= shadow 2 header bottom
-				shadow-before-3 = shadow 3 header top
-				shadow-after-3 	= shadow 3 header bottom
-
-				.clearfix		= required for mobile menu, do not remove!
-
-				Example Usage:  class="clearfix sticky header-sm transparent b-0"
-			-->
+		
 			<div id="header" class="navbar-toggleable-md sticky header-md clearfix">
 
 				<!-- TOP NAV -->
@@ -360,51 +319,51 @@
 				<br><br>
 
 				<!--residential-->
-				<section id='res' class='hide_sec center'>
-					<div>
+				<section id='res' class='show_sec center'>
+					<div id ='number-of-apartments'>
 						<label for="apts">Number of Apartments:</label>
 						<input type="number" id="apts" name="apts"> 
-						<button onclick="apts()">Click to set # of apartments</button>
+						<!--<button onclick="apts()">Click to set # of apartments</button>-->
 					</div>
-					<div>
+					<div id ='number-of-floors'>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
-						<button onclick="floors()">Click to set # of floors</button>
+						<!--<button onclick="floors()">Click to set # of floors</button>-->
 					</div>
-					<div>
+					<div id ='number of basements'>
 						<label for="basements">Number of Basements:</label>
 						<input type="number" id="basements" name="basements"> 
-						<button onclick="basements()">Click to set # of basements</button>
+						<!--<button onclick="basements()">Click to set # of basements</button>-->
 					</div>
 				</section>	
 				<br><br><br>
 
 				<!--commercial-->
 				<section id ='comm' class ='hide_sec center'>
-					<div>
+					<div id ='number-of-floors'>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
 						<button onclick="floors()">Click to set # of floors</button>
 					</div>
-					<div>
+					<div id ='number of basements'>
 						<label for="basements">Number of Basements:</label>
 						<input type="number" id="basements" name="basements"> 
-						<button onclick="basements()">Click to set # of basements</button>
+						<!--<button onclick="basements()">Click to set # of basements</button>-->
 					</div>
-					<div>
+					<div id ='number-of-corporations'>
 						<label for="biz">Number of Unique Businesses:</label>
 						<input type="number" id="biz" name="biz"> 
-						<button onclick="biz()">Click to set # of unique businesses</button>
+						<!--<button onclick="biz()">Click to set # of unique businesses</button>-->
 					</div>
-					<div>
+					<div id='number-of-parking-spots'>
 						<label for="park">Number of Parking Spaces:</label>
 						<input type="number" id="park" name="park"> 
-						<button onclick="park()">Click to set # of parking spaces</button>
+						<!--<button onclick="park()">Click to set # of parking spaces</button>-->
 					</div>
-					<div>
+					<div id ='number-of-elevators'>
 						<label for="com_shafts">Number of Elevators Shafts/Cages:</label>
 						<input type="number" id="com_shafts" name="com_shafts"> 
-						<button onclick="com_shafts()">Click to set # of elevators/cages</button>
+						<!--<button onclick="com_shafts()">Click to set # of elevators/cages</button>-->
 					</div>
 
 				</section>	
@@ -412,64 +371,64 @@
 
 				<!--corporate-->
 				<section id ='corp' class ='hide_sec center'>
-					<div>
+					<div id ='number-of-floors'>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
-						<button onclick="floors()">Click to set # of floors</button>
+						<!--<button onclick="floors()">Click to set # of floors</button>-->
 					</div>
-					<div>
+					<div id ='number-of-basements'>
 						<label for="basements">Number of Basements:</label>
 						<input type="number" id="basements" name="basements"> 
-						<button onclick="basements()">Click to set # of basements</button>
+						<!--<button onclick="basements()">Click to set # of basements</button>-->
 					</div>
-					<div>
+					<div id ='number-of-parking-spots'>
 						<label for="park">Number of Parking Spaces:</label>
 						<input type="number" id="park" name="park"> 
-						<button onclick="park()">Click to set # of parking spaces</button>
+						<!--<button onclick="park()">Click to set # of parking spaces</button>-->
 					</div>
-					<div>
+					<div id ='number-of-companies'>
 						<label for="tenants">Number of Separate Tenant Companies:</label>
 						<input type="number" id="tenant" name="tenants"> 
-						<button onclick="tenants()">Click to set # of separate tenant companies</button>
+						<!--<button onclick="tenants()">Click to set # of separate tenant companies</button>-->
 					</div>
-					<div>
+					<div id ='maximum-occupancy'>
 						<label for="occupants">Number of Occupants per Floor:</label>
 						<input type="number" id="occupants" name="occupants"> 
-						<button onclick="occupants()">Click to set # of occupants per floor</button>
+						<!--<button onclick="occupants()">Click to set # of occupants per floor</button>-->
 					</div>
 				</section>	
 				
 				<!--hybrid-->
 				<section id='hyb' class='hide_sec center'>
-					<div>
+					<div id ='number-of-floors'>
 						<label for="floors">Number of Floors:</label>
 						<input type="number" id="floors" name="floors"> 
-						<button onclick="floors()">Click to set # of floors</button>
+					<!--	<button onclick="floors()">Click to set # of floors</button>-->
 					</div>
-					<div>
+					<div id ='number-of-basements'>
 						<label for="basements">Number of Basements:</label>
 						<input type="number" id="basements" name="basements"> 
-						<button onclick="basements()">Click to set # of basements</button>
+					<!--	<button onclick="basements()">Click to set # of basements</button>-->
 					</div>
-					<div>
+					<div id ='number-of-companies'>
 						<label for="tenants">Number of Separate Tenant Companies:</label>
 						<input type="number" id="tenant" name="tenants"> 
-						<button onclick="tenants()">Click to set # of separate tenant companies</button>
+						<!--<button onclick="tenants()">Click to set # of separate tenant companies</button>-->
 					</div>
-					<div>
+					<div id ='number-of-parking-spots'>
 						<label for="park">Number of Parking Spaces:</label>
 						<input type="number" id="park" name="park"> 
-						<button onclick="park()">Click to set # of parking spaces</button>
+					<!--	<button onclick="park()">Click to set # of parking spaces</button>-->
 					</div>
-					<div>
+					<div id ='maximum-occupancy'>
 						<label for="occupants">Number of Occupants per Floor:</label>
 						<input type="number" id="occupants" name="occupants"> 
-						<button onclick="occupants()">Click to set # of occupants per floor</button>
+					<!--	<button onclick="occupants()">Click to set # of occupants per floor</button>-->
 					</div>
-					<div>
+					<div id ='business-hours'>
 						<label for="business-hours">Number of Open Hours:</label>
 						<input type="number" id="business-hours" name="business-hours" max ='24'> 
-						<button onclick="occupants()">Click to set # of open business hours (max 24)</button>
+					<!--	<button onclick="occupants()">Click to set # of open business hours (max 24)</button>-->
 					</div>
 				</section>
 
