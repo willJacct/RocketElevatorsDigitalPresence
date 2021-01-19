@@ -109,7 +109,7 @@
 					document.getElementById('number-of-basements').style.display='block';
 				}
 				else if (buildingType()==='commercial'){
-					alert('testing');
+					//alert('testing');
 					document.getElementById('number-of-corporations').style.display='none';
 					document.getElementById('number-of-parking-spots').style.display='block';
 					document.getElementById('number-of-elevators').style.display='block';
@@ -198,7 +198,7 @@
 			//parseFloat is necessary or else the results will append, not add!!
 			//mult issue, peut etre, ask later
 			function res_shafts(){
-				if (floors() < 20){
+				if (floors() <= 20){
 				return Math.round(resElNumbers()/6);}
 				else {
 					var colMult = floors()/20;
@@ -225,25 +225,26 @@
 				var exceliumFee = 1.16
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
-						alert(message + '\t$'+ (((res_shafts() * standard * standardFee))).toFixed(2));
-						document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+						return '\t$'+ (((res_shafts() * standard * standardFee))).toFixed(2);}
+					
 					else if (document.getElementById('premium').checked){
-						alert(message + '\t$'+ ((res_shafts() * premium * premiumFee)).toFixed(2))}
+						return '\t$'+ ((res_shafts() * premium * premiumFee)).toFixed(2)}
+					
 					else if (document.getElementById('excelium').checked){
 						alert(message + '\t$'+ ((res_shafts() * excelium * exceliumFee)).toFixed(2))}
 					else{ alert('Please select an option before clicking.')}}
 
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
-						alert(message + '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2));
-						document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+						return '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2);}
+					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
-						alert(message + '\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2))}
+						return'\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
-						alert(message + '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2))}
+						return '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2)}
 					else{ alert('Please select an option before clicking.')}}
 					
-				else if (buildingType()==='coporate' || buildingType()==='hybrid'){
+				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
 						alert(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2));
 						document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
@@ -393,8 +394,9 @@
 					</div>
 				<br><br>
 
-				<!--residential-->
-				
+			
+				<!-- forms-->
+				<div id ='quotes'>
 					<div id ='number-of-apartments' class='hide_sec center'>
 						<label for="apts">Number of Apartments:</label>
 						<input type="number" id="apts" name="apts"> 
@@ -445,7 +447,7 @@
 					<!--	<button onclick="occupants()">Click to set # of open business hours (max 24)</button>-->
 					</div>
 				
-			
+				</div>
 				<br><br><br><br>
 				<div class ='center'>
 					<input type="radio" name="product-lines" id= 'standard' value="standard" onclick="display_service_cost()"> Standard
@@ -454,14 +456,41 @@
 				
 				</div>
 				<br><br>
-				<div class ='center'>
+				<!--<div id ='elevator-amount' class='center'>
 					<label for="female">Total Estimated Cost:</label>
-					<input type="text" onchange="display_service_cost()" readonly>
-					<form onchange="display_service_cost()"></form>
+					<input type="text" readonly>
+					
+				</div>-->
+
+				<div id="elevator-unit-price" class='center'>
+					<label>N. of Elevators</label>
+					<input type='text' readonly id='elcost'>
+			   </div>
+
+			   <div id="elevator-total-price" class='center'>
+					<label>Total Price of Elevators</label>
+					<input type='text' readonly>
+		   		</div>
+
+		  		 <div id="installation-fees" class='center'>
+					<label>Installation Fees</label>
+					<input type='text' readonly>
 				</div>
+
+				<div id="final-price" class='center'>
+					<label>Final Estimated Price</label>
+					<input type='text' id ='total' readonly>
+			   </div>
 				<hr class="m-0" /><!-- 1px line separator -->
+		<script>
 
+			var test = document.getElementById('quotes');
 
+			test.addEventListener("input", function(e) {
+   				 //r.innerHTML = "input event triggered <br/>"+ test();
+    			document.getElementById('total').value = display_service_cost();
+			}, false);
+		</script>
 
 			<!-- Parallax -->
 			<section class="parallax parallax-1" style="background-image: url('assets/images/rocket/R2.png');">
