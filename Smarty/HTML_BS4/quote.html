@@ -132,7 +132,7 @@
 					document.getElementById('number-of-basements').style.display='block';
 				}
 				if (buildingType()==='hybrid'){
-						document.getElementById('number-of-corporations').style.display='none';
+					document.getElementById('number-of-corporations').style.display='none';
 					document.getElementById('number-of-parking-spots').style.display='block';
 					document.getElementById('number-of-elevators').style.display='none';
 					document.getElementById('number-of-companies').style.display='block';
@@ -172,15 +172,7 @@
 				//console.log(resElNumbers);
 				}
 			// possible bug. fix later
-			function res_shafts(){
-				if (floors() < 20){
-				return Math.round(resElNumbers()/6);}
-				else {
-					var colMult = floors()/20;
-					return Math.round(resElNumbers()/6)*colMult;
-					}
-				}
-
+		
 			function biz(){
 				return document.getElementById('biz').value;
 				}
@@ -205,6 +197,14 @@
 			}
 			//parseFloat is necessary or else the results will append, not add!!
 			//mult issue, peut etre, ask later
+			function res_shafts(){
+				if (floors() < 20){
+				return Math.round(resElNumbers()/6);}
+				else {
+					var colMult = floors()/20;
+					return Math.round(resElNumbers()/6)*colMult;
+					}
+				}
 
 			
 			function corp_hyb_shafts(){
@@ -217,19 +217,43 @@
 				
 			function display_service_cost(){
 				var message = 'Your total estimated cost is: \n\n';
-				var standard = 7655;
+				var standard = 7565;
 				var standardFee = 1.10;
 				var premium = 12345;
 				var premiumFee = 1.13;
 				var excelium = 15400;
 				var exceliumFee = 1.16
-				if(document.getElementById('standard').checked){
-					alert(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
-				else if (document.getElementById('premium').checked){
-					alert(message + '\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2))}
-				else if (document.getElementById('excelium').checked){
-					alert(message + '\t$'+ ((corp_hyb_shafts() * excelium * exceliumFee)).toFixed(2))}
-				else{ alert('Please select an option before clicking.')}
+				if (buildingType()==='residential'){
+					if(document.getElementById('standard').checked){
+						alert(message + '\t$'+ (((res_shafts() * standard * standardFee))).toFixed(2));
+						document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+					else if (document.getElementById('premium').checked){
+						alert(message + '\t$'+ ((res_shafts() * premium * premiumFee)).toFixed(2))}
+					else if (document.getElementById('excelium').checked){
+						alert(message + '\t$'+ ((res_shafts() * excelium * exceliumFee)).toFixed(2))}
+					else{ alert('Please select an option before clicking.')}}
+
+				else if (buildingType()==='commercial'){
+					if(document.getElementById('standard').checked){
+						alert(message + '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2));
+						document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+					else if (document.getElementById('premium').checked){
+						alert(message + '\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2))}
+					else if (document.getElementById('excelium').checked){
+						alert(message + '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2))}
+					else{ alert('Please select an option before clicking.')}}
+					
+				else if (buildingType()==='coporate' || buildingType()==='hybrid'){
+					if(document.getElementById('standard').checked){
+						alert(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2));
+						document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+					else if (document.getElementById('premium').checked){
+						alert(message + '\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2))}
+					else if (document.getElementById('excelium').checked){
+						alert(message + '\t$'+ ((corp_hyb_shafts() * excelium * exceliumFee)).toFixed(2))}
+					else{ alert('Please select an option before clicking.')}}
+
+				
 			}
 			
 			
@@ -428,9 +452,13 @@
 					<input type="radio" name="product-lines" id= 'premium' value="premium" onclick="display_service_cost()"> Premium
 					<input type="radio" name="product-lines" id= 'excelium' value="excelium" onclick="display_service_cost()"> Excelium
 				
-				
 				</div>
-
+				<br><br>
+				<div class ='center'>
+					<label for="female">Total Estimated Cost:</label>
+					<input type="text" onchange="display_service_cost()" readonly>
+					<form onchange="display_service_cost()"></form>
+				</div>
 				<hr class="m-0" /><!-- 1px line separator -->
 
 
