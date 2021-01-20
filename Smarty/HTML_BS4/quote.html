@@ -43,6 +43,16 @@
 				padding: 5px;
 
 			}
+
+			input { 
+				padding: 1;
+				margin: 1;
+				outline: none;
+				font-family: Roboto, Arial, sans-serif;
+				font-size: 14px;
+				color: rgb(146, 122, 122);
+				line-height: 22px;
+				}
 		</style>
 		<script>
 
@@ -157,7 +167,7 @@
 			function res_shafts(){
 				if (floors() <= 20){
 					var total =(resElNumbers()/6);
-				return (total);}
+				return Math.round(total);}
 				else {
 					var colMult = floors()/20;
 					var total = (resElNumbers()/6)*colMult+1;
@@ -175,6 +185,18 @@
 				return Math.round(total);
 			}
 				
+			function num_elevators(){
+				if (buildingType()==='residential'){
+					return res_shafts();
+				}
+				else if (buildingType==='commercial'){
+					return com_shafts();
+				}
+				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
+					return corp_hyb_shafts();
+				}
+
+			}
 				var standard = 7565;
 				var standardFee = 1.10;
 				var premium = 12345;
@@ -355,7 +377,7 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left scrollTo" href="#top">
+						<a class="logo float-left scrollTo" href="index.html">
 							<img src="assets\images\rocket\R2.png" alt="" />
 						</a>
 
@@ -425,7 +447,7 @@
 
 			<section id="home">
 					<!--selection box-->
-					<div class ='center'>
+					<div class ='center col-md-4'>
 						<label for="">Choose your building type</label>
 						<select id ='building-type' onchange="display_forms()" >
 							<option id='residential' value="residential">Residential</option>
@@ -500,27 +522,29 @@
 				</div> 
 				<br><br>
 				
-
-				<div id="elevator-unit-price" class='center'>
-					<label>N. of Elevators</label>
-					<input type='text' readonly id='elevators'>
-			   </div>
-
-			   <div id="elevator-total-price" class='center'>
-					<label>Total Price of Elevators</label>
-					<input type='text' readonly id ='elcost'>
-		   		</div>
-
-		  		 <div id="installation-fees" class='center'>
-					<label>Installation Fees</label>
-					<input type='text' readonly id ='fees'>
+				<div class='row justify-content-center'>
+					<div id="elevator-amount" class='col'>
+						<label>N. of Elevators</label>
+						<input type='text' readonly id='elevators'>
 				</div>
 
-				<div id="final-price" class='center'>
-					<label>Final Estimated Price</label>
-					<input type='text' id ='total' readonly>
-			   </div>
-				<hr class="m-0" /><!-- 1px line separator -->
+				<div id="elevator-total-price" class='col'>
+						<label>Total Price of Elevators</label>
+						<input type='text' readonly id ='elcost'>
+					</div>
+
+					<div id="installation-fees" class='col'>
+						<label>Installation Fees</label>
+						<input type='text' readonly id ='fees'>
+					</div>
+
+					<div id="final-price" class='col'>
+						<label>Final Estimated Price</label>
+						<input type='text' id ='total' readonly>
+				</div>
+
+				</div>
+			<br><br>
 		<script>
 
 			
@@ -529,6 +553,7 @@
 			final.addEventListener("input", function(e) {
 					//r.innerHTML = "input event triggered <br/>"+ test();
 				
+				document.getElementById('elevators').value = num_elevators();
 				document.getElementById('total').value = display_service_cost();
 				document.getElementById('elcost').value = el_costs();
 				document.getElementById('fees').value = install_fee_display();
