@@ -39,7 +39,7 @@
 			.center {
 
 				margin: auto;
-				width: 20%;
+				width: 30%;
 				padding: 5px;
 
 			}
@@ -48,53 +48,11 @@
 
 			
 			
+			
 			function buildingType(){ // selects the type of building ,saves into variable for use by other fns
 				return document.getElementById('building-type').value;
 				//return type;
 				}
-
-			/*function display_fields(){
-				if (buildingType()==='residential'){//
-					document.getElementById('res').classList.add('show_sec');
-					document.getElementById('res').classList.remove('hide_sec');
-					document.getElementById('comm').classList.remove('show_sec');
-					document.getElementById('corp').classList.remove('show_sec');
-					document.getElementById('hyb').classList.remove('show_sec');
-					document.getElementById('comm').classList.add('hide_sec');
-					document.getElementById('corp').classList.add('hide_sec');
-					document.getElementById('hyb').classList.add('hide_sec');
-				}
-				else if (buildingType()==='commercial'){//
-					document.getElementById('comm').classList.add('show_sec');
-					document.getElementById('comm').classList.remove('hide_sec');
-					document.getElementById('res').classList.remove('show_sec');
-					document.getElementById('corp').classList.remove('show_sec');
-					document.getElementById('hyb').classList.remove('show_sec');
-					document.getElementById('res').classList.add('hide_sec');
-					document.getElementById('corp').classList.add('hide_sec');
-					document.getElementById('hyb').classList.add('hide_sec');
-				}
-				else if (buildingType()==='corporate'){//
-					document.getElementById('corp').classList.add('show_sec');
-					document.getElementById('corp').classList.remove('hide_sec');
-					document.getElementById('comm').classList.remove('show_sec');
-					document.getElementById('res').classList.remove('show_sec');
-					document.getElementById('hyb').classList.remove('show_sec');
-					document.getElementById('comm').classList.add('hide_sec');
-					document.getElementById('res').classList.add('hide_sec');
-					document.getElementById('hyb').classList.add('hide_sec');
-				}
-				else if (buildingType()==='hybrid'){//
-					document.getElementById('hyb').classList.add('show_sec');
-					document.getElementById('hyb').classList.remove('hide_sec');
-					document.getElementById('comm').classList.remove('show_sec');
-					document.getElementById('corp').classList.remove('show_sec');
-					document.getElementById('res').classList.remove('show_sec');
-					document.getElementById('comm').classList.add('hide_sec');
-					document.getElementById('corp').classList.add('hide_sec');
-					document.getElementById('res').classList.add('hide_sec');
-				}
-			}*/
 
 			function display_forms (){
 				if (buildingType()==='residential'){
@@ -120,7 +78,7 @@
 					document.getElementById('number-of-apartments').style.display='none';
 					document.getElementById('number-of-basements').style.display='block';
 				}
-				if (buildingType()==='corporate'){
+				else if (buildingType()==='corporate'){
 					document.getElementById('number-of-corporations').style.display='block';
 					document.getElementById('number-of-parking-spots').style.display='block';
 					document.getElementById('number-of-elevators').style.display='none';
@@ -131,7 +89,7 @@
 					document.getElementById('number-of-apartments').style.display='none';
 					document.getElementById('number-of-basements').style.display='block';
 				}
-				if (buildingType()==='hybrid'){
+				 else if (buildingType()==='hybrid'){
 					document.getElementById('number-of-corporations').style.display='none';
 					document.getElementById('number-of-parking-spots').style.display='block';
 					document.getElementById('number-of-elevators').style.display='none';
@@ -195,20 +153,20 @@
 			function business_hours(){
 				return document.getElementById('hours').value;
 			}
-			//parseFloat is necessary or else the results will append, not add!!
-			//mult issue, peut etre, ask later
+			// something really broken with res_shafts
 			function res_shafts(){
 				if (floors() <= 20){
-					var total =Math.round(resElNumbers()/6);
-				return total;}
+					var total =(resElNumbers()/6);
+				return (total);}
 				else {
 					var colMult = floors()/20;
-					var total = Math.round(resElNumbers()/6)*colMult+1;
+					var total = (resElNumbers()/6)*colMult+1;
 					return total;
 					}
 				}
 
-			
+						//parseFloat is necessary or else the results will append, not add!!
+
 			function corp_hyb_shafts(){
 				var occ = occupants() * (parseFloat(floors()) + parseFloat(basements()));
 				var shafts = occ/1000;
@@ -234,7 +192,7 @@
 					
 					else if (document.getElementById('excelium').checked){
 						return '\t$'+ ((res_shafts() * excelium )).toFixed(2)}
-					else{ alert('Please select an option before clicking.')}}
+					}
 
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
@@ -244,7 +202,7 @@
 						return'\t$'+ ((com_shafts() * premium )).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
 						return '\t$'+ ((com_shafts() * excelium )).toFixed(2)}
-					else{ alert('Please select an option before clicking.')}}
+					}
 					
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
@@ -254,10 +212,46 @@
 						return'\t$'+ ((corp_hyb_shafts() * premium )).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
 						return'\t$'+ ((corp_hyb_shafts() * excelium )).toFixed(2)}
-					else{ alert('Please select an option before clicking.')}}
+					}
 
 				
 			}
+
+			function install_fee_display(){
+				if (buildingType()==='residential'){
+					if(document.getElementById('standard').checked){
+						return '\t$'+ (((res_shafts() * standard * standardFee))-((res_shafts() * standard ))).toFixed(2);}
+					
+					else if (document.getElementById('premium').checked){
+						return '\t$'+ (((res_shafts() * premium * premiumFee))- ((res_shafts() * premium ))).toFixed(2)}
+					
+					else if (document.getElementById('excelium').checked){
+						return '\t$'+ (((res_shafts() * excelium * exceliumFee))-(res_shafts() * excelium )).toFixed(2)}
+					}
+
+				else if (buildingType()==='commercial'){
+					if(document.getElementById('standard').checked){
+						return '\t$'+ (((com_shafts() * standard * standardFee))-((com_shafts() * standard ))).toFixed(2);}
+					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+					else if (document.getElementById('premium').checked){
+						return'\t$'+ (((com_shafts() * premium * premiumFee))-(com_shafts() * premium )).toFixed(2)}
+					else if (document.getElementById('excelium').checked){
+						return '\t$'+ (((com_shafts() * excelium * exceliumFee))-(com_shafts() * excelium )).toFixed(2)}
+					}
+					
+				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
+					if(document.getElementById('standard').checked){
+						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))-((corp_hyb_shafts() * standard ))).toFixed(2);}
+					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
+					else if (document.getElementById('premium').checked){
+						return'\t$'+ (((corp_hyb_shafts() * premium * premiumFee))-(corp_hyb_shafts() * premium )).toFixed(2)}
+					else if (document.getElementById('excelium').checked){
+						return'\t$'+ (((corp_hyb_shafts() * excelium * exceliumFee))-(corp_hyb_shafts() * excelium )).toFixed(2)}
+					}
+
+				
+			}
+			
 			
 			function display_service_cost(){
 				
@@ -270,7 +264,7 @@
 					
 					else if (document.getElementById('excelium').checked){
 						return '\t$'+ ((res_shafts() * excelium * exceliumFee)).toFixed(2)}
-					else{ alert('Please select an option before clicking.')}}
+					}
 
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
@@ -280,7 +274,7 @@
 						return'\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
 						return '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2)}
-					else{ alert('Please select an option before clicking.')}}
+					}
 					
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
@@ -290,7 +284,7 @@
 						return'\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
 						return'\t$'+ ((corp_hyb_shafts() * excelium * exceliumFee)).toFixed(2)}
-					else{ alert('Please select an option before clicking.')}}
+					}
 
 				
 			}
@@ -534,10 +528,10 @@
 			
 			final.addEventListener("input", function(e) {
 					//r.innerHTML = "input event triggered <br/>"+ test();
-			//	document.getElementById('elevators').value =
+				
 				document.getElementById('total').value = display_service_cost();
 				document.getElementById('elcost').value = el_costs();
-				
+				document.getElementById('fees').value = install_fee_display();
 			}, false);
 		</script>
 
