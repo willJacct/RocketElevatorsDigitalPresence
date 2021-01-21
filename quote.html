@@ -169,14 +169,8 @@
 				}
 						
 			function res_shafts(){
-				if (floors() <= 20){
-					var total =(resElNumbers()/6);
-				return Math.ceil(total);}
-				else {
-					var colMult = floors()/20;
-					var total = (resElNumbers()/6)*(colMult);
-					return Math.ceil(total);
-					}
+				var total = Math.ceil((apts()/floors())/6) * Math.ceil(floors()/20);
+				return total;
 				}
 
 			//parseFloat (or int) is necessary or else the results will append, not add!!
