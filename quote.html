@@ -39,20 +39,26 @@
 			.center {
 
 				margin: auto;
-				width: 30%;
+				width: 60%;
 				padding: 5px;
+				
 
 			}
 
 			input { 
-				padding: 1;
-				margin: 1;
-				outline: none;
-				font-family: Roboto, Arial, sans-serif;
-				font-size: 14px;
-				color: rgb(146, 122, 122);
-				line-height: 22px;
-				}
+				border: 2px solid #aaa;
+				border-radius: 4px;
+				margin: 8px 0;
+				padding: 8px;
+				box-sizing: border-box;
+				transition: 0.3s;
+			}
+
+			input:focus, input:hover {
+				border-color: dodgerblue;
+				box-shadow: 0 0 8px 0 dodgerblue;
+			}
+
 		</style>
 		<script>
 
@@ -64,6 +70,8 @@
 				//return type;
 				}
 
+			
+			// just shows/hides div elements based on drop down menu selection	
 			function display_forms (){
 				if (buildingType()==='residential'){
 					document.getElementById('number-of-corporations').style.display='none';
@@ -114,15 +122,12 @@
 			}
 
 
-				// next fns return # of apts, floors, basements
+			// next functions grab and return the value from the inputs for the calculator
 			function apts(){ 
 				return document.getElementById('apts').value;
 				//console.log(apts);
 				}
-			/* function apts2(){
-				document.getElementById('apts').addEventListener('change', apts())
-			}*/
-
+	
 			function floors(){
 				 return document.getElementById('floors').value;
 				console.log(floors);
@@ -133,13 +138,6 @@
 				return document.getElementById('basements').value;
 				//console.log(basements);
 				}
-
-			// changethis variable name
-			function resElNumbers(){
-				return apts()/floors();
-				//console.log(resElNumbers);
-				}
-			// possible bug. fix later
 		
 			function biz(){
 				return document.getElementById('biz').value;
@@ -163,28 +161,37 @@
 			function business_hours(){
 				return document.getElementById('hours').value;
 			}
-			// something really broken with res_shafts
+
+			//next 2 functions calculate the residential shafts
+			function resElNumbers(){
+				return apts()/floors();
+				//console.log(resElNumbers);
+				}
+						
 			function res_shafts(){
 				if (floors() <= 20){
 					var total =(resElNumbers()/6);
-				return Math.round(total);}
+				return Math.ceil(total);}
 				else {
 					var colMult = floors()/20;
-					var total = (resElNumbers()/6)*colMult+1;
-					return total;
+					var total = (resElNumbers()/6)*(colMult);
+					return Math.ceil(total);
 					}
 				}
 
-						//parseFloat is necessary or else the results will append, not add!!
+			//parseFloat (or int) is necessary or else the results will append, not add!!
+			// calculates # of corporate or hybrid shafts needed
 
 			function corp_hyb_shafts(){
 				var occ = occupants() * (parseFloat(floors()) + parseFloat(basements()));
 				var shafts = occ/1000;
-				var colMult = 1+   Math.round((parseFloat(floors()) + parseFloat(basements()))   / 20);
-				var total = shafts * colMult;
+				var columns = Math.round((parseFloat(floors()) + parseFloat(basements()))   / 20);
+				var el_per_column = Math.ceil(shafts / columns);
+				var total = el_per_column * columns;
 				return Math.round(total);
 			}
 				
+			// returns # of elevators needed, for the auto-updating form fields
 			function num_elevators(){
 				if (buildingType()==='residential'){
 					return res_shafts();
@@ -197,13 +204,15 @@
 				}
 
 			}
+
+			//next group of functions calculate the various costs
 				var standard = 7565;
 				var standardFee = 1.10;
 				var premium = 12345;
 				var premiumFee = 1.13;
 				var excelium = 15400;
 				var exceliumFee = 1.16
-
+			//returns cost per elevator
 			function el_price(){
 				if(document.getElementById('standard').checked){
 					return '\t$'+ standard }
@@ -215,7 +224,7 @@
 					return '\t$'+ excelium }
 				}
 
-
+			// calculates cost before installation fees
 			function el_costs(){
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
@@ -231,7 +240,6 @@
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
 						return '\t$'+ (((com_shafts() * standard ))).toFixed(2);}
-					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
 						return'\t$'+ ((com_shafts() * premium )).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
@@ -241,7 +249,6 @@
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
 						return'\t$'+ (((corp_hyb_shafts() * standard ))).toFixed(2);}
-					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
 						return'\t$'+ ((corp_hyb_shafts() * premium )).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
@@ -250,7 +257,7 @@
 
 				
 			}
-
+			// calculates just the installtion fee
 			function install_fee_display(){
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
@@ -266,7 +273,6 @@
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
 						return '\t$'+ (((com_shafts() * standard * standardFee))-((com_shafts() * standard ))).toFixed(2);}
-					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
 						return'\t$'+ (((com_shafts() * premium * premiumFee))-(com_shafts() * premium )).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
@@ -276,17 +282,15 @@
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
 						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))-((corp_hyb_shafts() * standard ))).toFixed(2);}
-					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
 						return'\t$'+ (((corp_hyb_shafts() * premium * premiumFee))-(corp_hyb_shafts() * premium )).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
 						return'\t$'+ (((corp_hyb_shafts() * excelium * exceliumFee))-(corp_hyb_shafts() * excelium )).toFixed(2)}
 					}
-
-				
+			
 			}
 			
-			
+			// calculates the final price
 			function display_service_cost(){
 				
 				if (buildingType()==='residential'){
@@ -303,7 +307,6 @@
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
 						return '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2);}
-					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
 						return'\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
@@ -313,7 +316,6 @@
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
 						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2);}
-					//	document.getElementById(message + '\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2)) }
 					else if (document.getElementById('premium').checked){
 						return'\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2)}
 					else if (document.getElementById('excelium').checked){
@@ -323,16 +325,7 @@
 				
 			}
 			
-			function res_el_costs(){
-				if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard ))).toFixed(2);}
-				else if (document.getElementById('premium').checked){
-						return '\t$'+ ((res_shafts() * premium )).toFixed(2);}
-					
-				else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((res_shafts() * excelium)).toFixed(2);}
-				}
-			
+		
 			
 		</script>
 	</head>
@@ -458,10 +451,11 @@
 
 
 			<section id="home">
-					<!--selection box-->
+					<!--selection box, to choose your option-->
 					<div class ='center col-md-4'>
 						<label for="">Choose your building type</label>
 						<select id ='building-type' onchange="display_forms()" >
+							<option id= 'default' value='default'>-Pick Option-</option>
 							<option id='residential' value="residential">Residential</option>
 							<option id ='commercial' value="commercial">Commercial</option>
 							<option id = 'corporate' value="corporate">Corporate</option>
@@ -471,7 +465,7 @@
 				<br><br>
 
 			
-				<!-- forms-->
+				<!-- Input divs for each element that needs to be collected-->
 				<div id ='quotes'>
 					<div id ='number-of-apartments' class='hide_sec center'>
 						<label for="apts">Number of Apartments:</label>
@@ -524,16 +518,17 @@
 					</div>
 				
 				
-				<br><br><br><br>
+				<br><br><br>
+				<!--radio buttons to choose service level-->
 				<div class ='center'>
 					<input type="radio" name="product-lines" id= 'standard' value="standard" onclick="display_service_cost()"> Standard
 					<input type="radio" name="product-lines" id= 'premium' value="premium" onclick="display_service_cost()"> Premium
 					<input type="radio" name="product-lines" id= 'excelium' value="excelium" onclick="display_service_cost()"> Excelium
 				
 				</div>
-				</div> 
-				<br><br>
 				
+				<br><br>
+				<!-- read only fields displaying the calculations-->
 				<div class='row justify-content-center'>
 					<div id="elevator-amount" class='col'>
 						<label>N. of Elevators</label>
@@ -564,11 +559,13 @@
 			<br><br>
 		<script>
 
-			
+			// event listener which updates the readonly fields
+			// I got errors when I removed this from the bottom of the page and put it with the 
+			// rest of the JS, so i'll leave it here for now
+		
 			var final = document.getElementById('quotes');
 			
 			final.addEventListener("input", function(e) {
-					//r.innerHTML = "input event triggered <br/>"+ test();
 				
 				document.getElementById('elevators').value = num_elevators();
 				document.getElementById('elprice').value = el_price();
