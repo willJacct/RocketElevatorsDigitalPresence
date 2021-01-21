@@ -204,6 +204,18 @@
 				var excelium = 15400;
 				var exceliumFee = 1.16
 
+			function el_price(){
+				if(document.getElementById('standard').checked){
+					return '\t$'+ standard }
+					
+				else if (document.getElementById('premium').checked){
+					return '\t$'+ premium }
+					
+				else if (document.getElementById('excelium').checked){
+					return '\t$'+ excelium }
+				}
+
+
 			function el_costs(){
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
@@ -526,7 +538,12 @@
 					<div id="elevator-amount" class='col'>
 						<label>N. of Elevators</label>
 						<input type='text' readonly id='elevators'>
-				</div>
+					</div>
+
+					<div id="elevator-unit-price" class='col'>
+						<label>Cost Per Elevator</label>
+						<input type='text' readonly id='elprice'>
+					</div>
 
 				<div id="elevator-total-price" class='col'>
 						<label>Total Price of Elevators</label>
@@ -554,6 +571,7 @@
 					//r.innerHTML = "input event triggered <br/>"+ test();
 				
 				document.getElementById('elevators').value = num_elevators();
+				document.getElementById('elprice').value = el_price();
 				document.getElementById('total').value = display_service_cost();
 				document.getElementById('elcost').value = el_costs();
 				document.getElementById('fees').value = install_fee_display();
@@ -577,33 +595,6 @@
 			</section>
 			<!-- /Parallax -->
 
-
-
-
-			<!-- PORTFOLIO -->
-		
-			<!-- /PORTFOLIO -->
-
-
-
-
-			<!-- Testimonials -->
-			
-			<!-- /Testimonials -->
-
-
-
-
-
-			<!-- News -->
-		
-			<!-- /News -->
-
-
-
-			<!-- Clients -->
-		
-			<!-- /Clients -->
 
 
 
@@ -844,35 +835,6 @@
 		<!-- PAGELEVEL SCRIPTS -->
 		<script src="assets/js/contact.js"></script>
 
-		<!-- 
-			GMAP.JS 
-			http://hpneo.github.io/gmaps/
-		-->
-		<script src="//maps.google.com/maps/api/js?key=AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY"></script>
-		<script src="assets/plugins/gmaps.js"></script>
-		<script>
-
-			jQuery(document).ready(function(){
-				
-				
-				/**
-					@BASIC GOOGLE MAP
-				**/
-				var map2 = new GMaps({
-					div: '#map2',
-					lat: -12.043333,
-					lng: -77.028333,
-					scrollwheel: false
-				});
-
-				var marker = map2.addMarker({
-					lat: -12.043333,
-					lng: -77.028333,
-					title: 'Company, Inc.'
-				});
-
-			});
-
-		</script>
+	
 	</body>
 </html>
