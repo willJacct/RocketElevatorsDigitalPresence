@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Rocket Elevators - Quote page</title>
+		<title>Rocket Elevators - Residential Landing page</title>
 		<meta name="description" content="" />
 		<meta name="Author" content="Will Johnson (codeBoxx Genesis)" />
 
@@ -27,305 +27,40 @@
 		<!-- PAGE LEVEL SCRIPTS -->
 		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/color_scheme/blue.css" rel="stylesheet" type="text/css" id="color_scheme" />
-		<style>
-			.hide_sec {
+	<style>
+
+		.hide_sec {
 				display:none;
 			}
-
-			.show_sec {
-				display: block; 
-			}
-
-			.center {
+			
+		.center {
 
 				margin: auto;
 				width: 60%;
 				padding: 5px;
-				
 
 			}
 
 			input { 
-				border: 2px solid #aaa;
-				border-radius: 4px;
-				margin: 8px 0;
-				padding: 8px;
-				box-sizing: border-box;
-				transition: 0.3s;
-			}
-
-			input:focus, input:hover {
-				border-color: dodgerblue;
-				box-shadow: 0 0 8px 0 dodgerblue;
-			}
-
-		</style>
-		<script>
-
+			border: 2px solid #aaa;
+			border-radius: 4px;
 			
-			
-			
-			function buildingType(){ // selects the type of building ,saves into variable for use by other fns
-				return document.getElementById('building-type').value;
-				//return type;
-				}
+			padding: 8px;
+			box-sizing: border-box;
+			transition: 0.3s;
+		}
 
-			
-			// just shows/hides div elements based on drop down menu selection	
-			function display_forms (){
-				if (buildingType()==='residential'){
-					document.getElementById('number-of-corporations').style.display='none';
-					document.getElementById('number-of-parking-spots').style.display='none';
-					document.getElementById('number-of-elevators').style.display='none';
-					document.getElementById('number-of-companies').style.display='none';
-					document.getElementById('maximum-occupancy').style.display='none';
-					document.getElementById('business-hours').style.display='none';
-					document.getElementById('number-of-floors').style.display='block';
-					document.getElementById('number-of-apartments').style.display='block';
-					document.getElementById('number-of-basements').style.display='block';
-				}
-				else if (buildingType()==='commercial'){
-					//alert('testing');
-					document.getElementById('number-of-corporations').style.display='none';
-					document.getElementById('number-of-parking-spots').style.display='block';
-					document.getElementById('number-of-elevators').style.display='block';
-					document.getElementById('number-of-companies').style.display='block';
-					document.getElementById('maximum-occupancy').style.display='none';
-					document.getElementById('business-hours').style.display='none';
-					document.getElementById('number-of-floors').style.display='block';
-					document.getElementById('number-of-apartments').style.display='none';
-					document.getElementById('number-of-basements').style.display='block';
-				}
-				else if (buildingType()==='corporate'){
-					document.getElementById('number-of-corporations').style.display='block';
-					document.getElementById('number-of-parking-spots').style.display='block';
-					document.getElementById('number-of-elevators').style.display='none';
-					document.getElementById('number-of-companies').style.display='none';
-					document.getElementById('maximum-occupancy').style.display='block';
-					document.getElementById('business-hours').style.display='none';
-					document.getElementById('number-of-floors').style.display='block';
-					document.getElementById('number-of-apartments').style.display='none';
-					document.getElementById('number-of-basements').style.display='block';
-				}
-				 else if (buildingType()==='hybrid'){
-					document.getElementById('number-of-corporations').style.display='none';
-					document.getElementById('number-of-parking-spots').style.display='block';
-					document.getElementById('number-of-elevators').style.display='none';
-					document.getElementById('number-of-companies').style.display='block';
-					document.getElementById('maximum-occupancy').style.display='block';
-					document.getElementById('business-hours').style.display='block';
-					document.getElementById('number-of-floors').style.display='block';
-					document.getElementById('number-of-apartments').style.display='none';
-					document.getElementById('number-of-basements').style.display='block';
-				}
+		input:focus, input:hover {
+			border-color: dodgerblue;
+			box-shadow: 0 0 8px 0 dodgerblue;
+		}
 
-			}
-
-
-			// next functions grab and return the value from the inputs for the calculator
-			function apts(){ 
-				return document.getElementById('apts').value;
-				//console.log(apts);
-				}
-	
-			function floors(){
-				 return document.getElementById('floors').value;
-				console.log(floors);
-				//alert(floors);
-				}
-
-			function basements(){
-				return document.getElementById('basements').value;
-				//console.log(basements);
-				}
-		
-			function biz(){
-				return document.getElementById('biz').value;
-				}
-
-			function park(){
-				return document.getElementById('park').value;
-				}
-
-			function com_shafts(){
-				return document.getElementById('com_shafts').value;
-				}
-
-			function tenants(){
-				return document.getElementById('tenants').value;
-			}
-
-			function occupants(){
-				return document.getElementById('occupants').value;
-			}
-			function business_hours(){
-				return document.getElementById('hours').value;
-			}
-
-			//next 2 functions calculate the residential shafts
-			function resElNumbers(){
-				return apts()/floors();
-				//console.log(resElNumbers);
-				}
-						
-			function res_shafts(){
-				var total = Math.ceil((apts()/floors())/6) * Math.ceil(floors()/20);
-				return total;
-				}
-
-			//parseFloat (or int) is necessary or else the results will append, not add!!
-			// calculates # of corporate or hybrid shafts needed
-
-			function corp_hyb_shafts(){
-				var occ = occupants() * (parseFloat(floors()) + parseFloat(basements()));
-				var shafts = occ/1000;
-				var columns = Math.round((parseFloat(floors()) + parseFloat(basements()))   / 20);
-				var el_per_column = Math.ceil(shafts / columns);
-				var total = el_per_column * columns;
-				return Math.round(total);
-			}
-				
-			// returns # of elevators needed, for the auto-updating form fields
-			function num_elevators(){
-				if (buildingType()==='residential'){
-					return res_shafts();
-				}
-				else if (buildingType()==='commercial'){
-					return com_shafts();
-				}
-				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
-					return corp_hyb_shafts();
-				}
-
-			}
-
-			//next group of functions calculate the various costs
-				var standard = 7565;
-				var standardFee = 1.10;
-				var premium = 12345;
-				var premiumFee = 1.13;
-				var excelium = 15400;
-				var exceliumFee = 1.16
-			//returns cost per elevator
-			function el_price(){
-				if(document.getElementById('standard').checked){
-					return '\t$'+ standard.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-					
-				else if (document.getElementById('premium').checked){
-					return '\t$'+ premium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-					
-				else if (document.getElementById('excelium').checked){
-					return '\t$'+ excelium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-				}
-
-			// calculates cost before installation fees
-			function el_costs(){
-				if (buildingType()==='residential'){
-					if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					
-					else if (document.getElementById('premium').checked){
-						return '\t$'+ ((res_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					
-					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((res_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-
-				else if (buildingType()==='commercial'){
-					if(document.getElementById('standard').checked){
-						return '\t$'+ (((com_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((com_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((com_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-					
-				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
-					if(document.getElementById('standard').checked){
-						return'\t$'+ (((corp_hyb_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('excelium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-
-				
-			}
-			// calculates just the installtion fee
-			function install_fee_display(){
-				if (buildingType()==='residential'){
-					if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard * standardFee))-((res_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					
-					else if (document.getElementById('premium').checked){
-						return '\t$'+ (((res_shafts() * premium * premiumFee))- ((res_shafts() * premium ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					
-					else if (document.getElementById('excelium').checked){
-						return '\t$'+ (((res_shafts() * excelium * exceliumFee))-(res_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-
-				else if (buildingType()==='commercial'){
-					if(document.getElementById('standard').checked){
-						return '\t$'+ (((com_shafts() * standard * standardFee))-((com_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('premium').checked){
-						return'\t$'+ (((com_shafts() * premium * premiumFee))-(com_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('excelium').checked){
-						return '\t$'+ (((com_shafts() * excelium * exceliumFee))-(com_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-					
-				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
-					if(document.getElementById('standard').checked){
-						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))-((corp_hyb_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('premium').checked){
-						return'\t$'+ (((corp_hyb_shafts() * premium * premiumFee))-(corp_hyb_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('excelium').checked){
-						return'\t$'+ (((corp_hyb_shafts() * excelium * exceliumFee))-(corp_hyb_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-			
-			}
-			
-			// calculates the final price
-			function display_service_cost(){
-				
-				if (buildingType()==='residential'){
-					if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard * standardFee))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					
-					else if (document.getElementById('premium').checked){
-						return '\t$'+ ((res_shafts() * premium * premiumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					
-					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((res_shafts() * excelium * exceliumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-
-				else if (buildingType()==='commercial'){
-					if(document.getElementById('standard').checked){
-						return '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-					
-				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
-					if(document.getElementById('standard').checked){
-						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					else if (document.getElementById('excelium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * excelium * exceliumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
-					}
-
-				
-			}
-			
-		
-			
-		</script>
+	</style>
+	<script src='assets/js/quote.js'></script>
 	</head>
 
 	
-	<body class="grain-blue">
+	<body>
 
 		<!-- SLIDE TOP -->
 		<div id="slidetop">
@@ -359,7 +94,7 @@
 		</div>
 		<!-- /SLIDE TOP -->
 
-		
+
 		<!-- wrapper -->
 		<div id="wrapper">
 
@@ -445,137 +180,149 @@
 
 
 			<section id="home">
-<<<<<<< HEAD
-				<h1 class='center'>REQUEST A QUOTE</h1>
-=======
->>>>>>> 6f722f2b82d29d9347cdc9c135bc6b9455e323fe
-					<!--selection box, to choose your option-->
-					<div class ='center col-md-4'>
-						<label for="">Choose your building type</label>
-						<select id ='building-type' onchange="display_forms()" >
-							<option id= 'default' value='default'>-Pick Option-</option>
-							<option id='residential' value="residential">Residential</option>
-							<option id ='commercial' value="commercial">Commercial</option>
-							<option id = 'corporate' value="corporate">Corporate</option>
-							<option id ='hybrid'	 value="hybrid">Hybrid</option>
-						</select>
-					</div>
-				<br><br>
-
-			
-				<!-- Input divs for each element that needs to be collected-->
-				<div id ='quotes'>
-					<div id ='number-of-apartments' class='hide_sec center'>
-						<label for="apts">Number of Apartments:</label>
-						<input type="number" id="apts" name="apts"> 
-						<!--<button onclick="apts()">Click to set # of apartments</button>-->
-					</div>
-					<div id ='number-of-floors' class='hide_sec center' >
-						<label for="floors">Number of Floors:</label>
-						<input type="number" id="floors" name="floors"> 
-						<!--<button onclick="floors()">Click to set # of floors</button>-->
-					</div>
-					<div id ='number-of-basements'class='hide_sec center'>
-						<label for="basements">Number of Basements:</label>
-						<input type="number" id="basements" name="basements"> 
-						<!--<button onclick="basements()">Click to set # of basements</button>-->
-					</div>
-					<div id ='number-of-corporations' class='hide_sec center'>
-						<label for="biz">Number of Unique Businesses:</label>
-						<input type="number" id="biz" name="biz"> 
-						<!--<button onclick="biz()">Click to set # of unique businesses</button>-->
-					</div>
+				<section id="home">
+					<h1 class='center'>REQUEST A QUOTE</h1>
+						<!--selection box, to choose your option-->
+						<div class ='center col-md-4'>
+							<label for="">Choose your building type</label>
+							<select id ='building-type' onchange="display_forms()" >
+								<option id= 'default' value='default'>-Pick Option-</option>
+								<option id='residential' value="residential">Residential</option>
+								<option id ='commercial' value="commercial">Commercial</option>
+								<option id = 'corporate' value="corporate">Corporate</option>
+								<option id ='hybrid'	 value="hybrid">Hybrid</option>
+							</select>
+						</div>
+					<br><br>
+	
+				
+					<!-- Input divs for each element that needs to be collected-->
+					<div id ='quotes'>
+						<div id ='number-of-apartments' class='hide_sec center'>
+							<label for="apts">Number of Apartments:</label>
+							<input type="number" id="apts" name="apts"> 
+							<!--<button onclick="apts()">Click to set # of apartments</button>-->
+						</div>
+						<div id ='number-of-floors' class='hide_sec center' >
+							<label for="floors">Number of Floors:</label>
+							<input type="number" id="floors" name="floors"> 
+							<!--<button onclick="floors()">Click to set # of floors</button>-->
+						</div>
+						<div id ='number-of-basements'class='hide_sec center'>
+							<label for="basements">Number of Basements:</label>
+							<input type="number" id="basements" name="basements"> 
+							<!--<button onclick="basements()">Click to set # of basements</button>-->
+						</div>
+						<div id ='number-of-corporations' class='hide_sec center'>
+							<label for="biz">Number of Unique Businesses:</label>
+							<input type="number" id="biz" name="biz"> 
+							<!--<button onclick="biz()">Click to set # of unique businesses</button>-->
+						</div>
+						<br><br><br>
+						<div id='number-of-parking-spots' class='hide_sec center'>
+							<label for="park">Number of Parking Spaces:</label>
+							<input type="number" id="park" name="park"> 
+							<!--<button onclick="park()">Click to set # of parking spaces</button>-->
+						</div>
+						<div id ='number-of-elevators' class='hide_sec center'>
+							<label for="com_shafts">Number of Elevators Shafts/Cages:</label>
+							<input type="number" id="com_shafts" name="com_shafts"> 
+							<!--<button onclick="com_shafts()">Click to set # of elevators/cages</button>-->
+						</div>
+						
+						<div id ='number-of-companies' class='hide_sec center'>
+							<label for="tenants">Number of Separate Tenant Companies:</label>
+							<input type="number" id="tenant" name="tenants"> 
+							<!--<button onclick="tenants()">Click to set # of separate tenant companies</button>-->
+						</div>
+						
+						
+						<div id ='maximum-occupancy' class='hide_sec center'>
+							<label for="occupants">Number of Occupants per Floor:</label>
+							<input type="number" id="occupants" name="occupants"> 
+						<!--	<button onclick="occupants()">Click to set # of occupants per floor</button>-->
+						</div>
+						<div id ='business-hours' class='hide_sec center'>
+							<label for="hours">Number of Open Hours:</label>
+							<input type="number" id="hours" name="hours" max ='24'> 
+						<!--	<button onclick="occupants()">Click to set # of open business hours (max 24)</button>-->
+						</div>
+					
+					
 					<br><br><br>
-					<div id='number-of-parking-spots' class='hide_sec center'>
-						<label for="park">Number of Parking Spaces:</label>
-						<input type="number" id="park" name="park"> 
-						<!--<button onclick="park()">Click to set # of parking spaces</button>-->
-					</div>
-					<div id ='number-of-elevators' class='hide_sec center'>
-						<label for="com_shafts">Number of Elevators Shafts/Cages:</label>
-						<input type="number" id="com_shafts" name="com_shafts"> 
-						<!--<button onclick="com_shafts()">Click to set # of elevators/cages</button>-->
+					<!--radio buttons to choose service level-->
+					<h3 class ='center'>SELECT ELEVATOR QUALITY</h2>
+					<div class ='center'>
+						<input type="radio" name="product-lines" id= 'standard' value="standard" onclick="display_service_cost()"> Standard
+						<input type="radio" name="product-lines" id= 'premium' value="premium" onclick="display_service_cost()"> Premium
+						<input type="radio" name="product-lines" id= 'excelium' value="excelium" onclick="display_service_cost()"> Excelium
+					
 					</div>
 					
-					<div id ='number-of-companies' class='hide_sec center'>
-						<label for="tenants">Number of Separate Tenant Companies:</label>
-						<input type="number" id="tenant" name="tenants"> 
-						<!--<button onclick="tenants()">Click to set # of separate tenant companies</button>-->
+					<br><br>
+					<!-- read only fields displaying the calculations-->
+					<div class='row justify-content-center'>
+						<div id="elevator-amount" class='col'>
+							<label>N. of Elevators</label>
+							<input type='text' readonly id='elevators'>
+						</div>
+	
+						<div id="elevator-unit-price" class='col'>
+							<label>Cost Per Elevator</label>
+							<input type='text' readonly id='elprice'>
+						</div>
+	
+					<div id="elevator-total-price" class='col'>
+							<label>Total Price of Elevators</label>
+							<input type='text' readonly id ='elcost'>
+						</div>
+	
+						<div id="installation-fees" class='col'>
+							<label>Installation Fees</label>
+							<input type='text' readonly id ='fees'>
+						</div>
+	
+						<div id="final-price" class='col'>
+							<label>Final Estimated Price</label>
+							<input type='text' id ='total' readonly>
 					</div>
-					
-					
-					<div id ='maximum-occupancy' class='hide_sec center'>
-						<label for="occupants">Number of Occupants per Floor:</label>
-						<input type="number" id="occupants" name="occupants"> 
-					<!--	<button onclick="occupants()">Click to set # of occupants per floor</button>-->
+	
 					</div>
-					<div id ='business-hours' class='hide_sec center'>
-						<label for="hours">Number of Open Hours:</label>
-						<input type="number" id="hours" name="hours" max ='24'> 
-					<!--	<button onclick="occupants()">Click to set # of open business hours (max 24)</button>-->
-					</div>
-				
-				
-				<br><br><br>
-				<!--radio buttons to choose service level-->
-<<<<<<< HEAD
-				<h3 class ='center'>SELECT ELEVATOR QUALITY</h2>
-=======
->>>>>>> 6f722f2b82d29d9347cdc9c135bc6b9455e323fe
-				<div class ='center'>
-					<input type="radio" name="product-lines" id= 'standard' value="standard" onclick="display_service_cost()"> Standard
-					<input type="radio" name="product-lines" id= 'premium' value="premium" onclick="display_service_cost()"> Premium
-					<input type="radio" name="product-lines" id= 'excelium' value="excelium" onclick="display_service_cost()"> Excelium
-				
-				</div>
-				
 				<br><br>
-				<!-- read only fields displaying the calculations-->
-				<div class='row justify-content-center'>
-					<div id="elevator-amount" class='col'>
-						<label>N. of Elevators</label>
-						<input type='text' readonly id='elevators'>
-					</div>
-
-					<div id="elevator-unit-price" class='col'>
-						<label>Cost Per Elevator</label>
-						<input type='text' readonly id='elprice'>
-					</div>
-
-				<div id="elevator-total-price" class='col'>
-						<label>Total Price of Elevators</label>
-						<input type='text' readonly id ='elcost'>
-					</div>
-
-					<div id="installation-fees" class='col'>
-						<label>Installation Fees</label>
-						<input type='text' readonly id ='fees'>
-					</div>
-
-					<div id="final-price" class='col'>
-						<label>Final Estimated Price</label>
-						<input type='text' id ='total' readonly>
-				</div>
-
-				</div>
-			<br><br>
-		<script>
-
-			// event listener which updates the readonly fields
-			// I got errors when I removed this from the bottom of the page and put it with the 
-			// rest of the JS, so i'll leave it here for now
-		
-			var final = document.getElementById('quotes');
+			<script>
+	
+				// event listener which updates the readonly fields
+				// I got errors when I removed this from the bottom of the page and put it with the 
+				// rest of the JS, so i'll leave it here for now
 			
-			final.addEventListener("input", function(e) {
+				var final = document.getElementById('quotes');
 				
-				document.getElementById('elevators').value = num_elevators();
-				document.getElementById('elprice').value = el_price();
-				document.getElementById('total').value = display_service_cost();
-				document.getElementById('elcost').value = el_costs();
-				document.getElementById('fees').value = install_fee_display();
-			}, false);
-		</script>
+				final.addEventListener("input", function(e) {
+					
+					document.getElementById('elevators').value = num_elevators();
+					document.getElementById('elprice').value = el_price();
+					document.getElementById('total').value = display_service_cost();
+					document.getElementById('elcost').value = el_costs();
+					document.getElementById('fees').value = install_fee_display();
+				}, false);
+			</script>
+					
+
+			<hr class="m-0" /><!-- 1px line separator -->
+
+
+			<!-- BUTTON CALLOUT -->
+			
+			<!-- /BUTTON CALLOUT -->
+
+
+			
+			<!-- Services -->
+			
+			<!-- /Services -->
+
+			
+
 
 			<!-- Parallax -->
 			<section class="parallax parallax-1" style="background-image: url('assets/images/R2.png');">
@@ -585,7 +332,7 @@
 
 					<div class="text-center">
 						<h2 class="fs-40 fw-300">Since 1976</h2>
-						<a class="btn btn-default btn-lg" href="#top">Request a Quote<i class="fa fa-angle-right"></i></a> 
+						<a class="btn btn-default btn-lg" href="quote.html">Request a Quote<i class="fa fa-angle-right"></i></a> 
 						&nbsp; OR &nbsp; 
 						<a class="btn btn-blue btn-lg" href="#contact">Contact Us <i class="fa fa-angle-right"></i></a>
 					</div>
@@ -593,7 +340,6 @@
 				</div>
 			</section>
 			<!-- /Parallax -->
-
 
 
 
@@ -617,29 +363,7 @@
 							<h3>Drop us a line or just say <strong><em>Hello!</em></strong></h3>
 
 							
-							<!--
-								MESSAGES
-								
-									How it works?
-									The form data is posted to php/contact.php where the fields are verified!
-									php.contact.php will redirect back here and will add a hash to the end of the URL:
-										#alert_success 		= email sent
-										#alert_failed		= email not sent - internal server error (404 error or SMTP problem)
-										#alert_mandatory	= email not sent - required fields empty
-										Hashes are handled by assets/js/contact.js
-
-									Form data: required to be an array. Example:
-										contact[email][required]  WHERE: [email] = field name, [required] = only if this field is required (PHP will check this)
-										Also, add `required` to input fields if is a mandatory field. 
-										Example: <input required type="email" value="" class="form-control" name="contact[email][required]">
-
-									PLEASE NOTE: IF YOU WANT TO ADD OR REMOVE FIELDS (EXCEPT CAPTCHA), JUST EDIT THE HTML CODE, NO NEED TO EDIT php/contact.php or javascript
-												 ALL FIELDS ARE DETECTED DINAMICALY BY THE PHP
-
-									WARNING! Do not change the `email` and `name`!
-												contact[name][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
-												contact[email][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
-							-->
+							
 
 							<!-- Alert Success -->
 							<div id="alert_success" class="alert alert-success mb-30">
@@ -778,9 +502,7 @@
 						</div>
 						<!-- /col #1 -->
 
-						<!-- col #2 -->
 						
-						<!-- /col #2 -->
 
 					</div>
 
@@ -824,7 +546,7 @@
 		<script src="assets/js/scripts.js"></script>
 		
 		<!-- STYLESWITCHER - REMOVE -->
-
+	
 
 		<!-- REVOLUTION SLIDER -->
 		<script src="assets/plugins/slider.revolution/js/jquery.themepunch.tools.min.js"></script>
