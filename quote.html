@@ -209,44 +209,44 @@
 			//returns cost per elevator
 			function el_price(){
 				if(document.getElementById('standard').checked){
-					return '\t$'+ standard }
+					return '\t$'+ standard.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 					
 				else if (document.getElementById('premium').checked){
-					return '\t$'+ premium }
+					return '\t$'+ premium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 					
 				else if (document.getElementById('excelium').checked){
-					return '\t$'+ excelium }
+					return '\t$'+ excelium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
 				}
 
 			// calculates cost before installation fees
 			function el_costs(){
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard ))).toFixed(2);}
+						return '\t$'+ (((res_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					
 					else if (document.getElementById('premium').checked){
-						return '\t$'+ ((res_shafts() * premium )).toFixed(2)}
+						return '\t$'+ ((res_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					
 					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((res_shafts() * excelium )).toFixed(2)}
+						return '\t$'+ ((res_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
-						return '\t$'+ (((com_shafts() * standard ))).toFixed(2);}
+						return '\t$'+ (((com_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((com_shafts() * premium )).toFixed(2)}
+						return'\t$'+ ((com_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((com_shafts() * excelium )).toFixed(2)}
+						return '\t$'+ ((com_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 					
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
-						return'\t$'+ (((corp_hyb_shafts() * standard ))).toFixed(2);}
+						return'\t$'+ (((corp_hyb_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * premium )).toFixed(2)}
+						return'\t$'+ ((corp_hyb_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('excelium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * excelium )).toFixed(2)}
+						return'\t$'+ ((corp_hyb_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 
 				
@@ -255,31 +255,31 @@
 			function install_fee_display(){
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard * standardFee))-((res_shafts() * standard ))).toFixed(2);}
+						return '\t$'+ (((res_shafts() * standard * standardFee))-((res_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					
 					else if (document.getElementById('premium').checked){
-						return '\t$'+ (((res_shafts() * premium * premiumFee))- ((res_shafts() * premium ))).toFixed(2)}
+						return '\t$'+ (((res_shafts() * premium * premiumFee))- ((res_shafts() * premium ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					
 					else if (document.getElementById('excelium').checked){
-						return '\t$'+ (((res_shafts() * excelium * exceliumFee))-(res_shafts() * excelium )).toFixed(2)}
+						return '\t$'+ (((res_shafts() * excelium * exceliumFee))-(res_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
-						return '\t$'+ (((com_shafts() * standard * standardFee))-((com_shafts() * standard ))).toFixed(2);}
+						return '\t$'+ (((com_shafts() * standard * standardFee))-((com_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('premium').checked){
-						return'\t$'+ (((com_shafts() * premium * premiumFee))-(com_shafts() * premium )).toFixed(2)}
+						return'\t$'+ (((com_shafts() * premium * premiumFee))-(com_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('excelium').checked){
-						return '\t$'+ (((com_shafts() * excelium * exceliumFee))-(com_shafts() * excelium )).toFixed(2)}
+						return '\t$'+ (((com_shafts() * excelium * exceliumFee))-(com_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 					
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
-						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))-((corp_hyb_shafts() * standard ))).toFixed(2);}
+						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))-((corp_hyb_shafts() * standard ))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('premium').checked){
-						return'\t$'+ (((corp_hyb_shafts() * premium * premiumFee))-(corp_hyb_shafts() * premium )).toFixed(2)}
+						return'\t$'+ (((corp_hyb_shafts() * premium * premiumFee))-(corp_hyb_shafts() * premium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('excelium').checked){
-						return'\t$'+ (((corp_hyb_shafts() * excelium * exceliumFee))-(corp_hyb_shafts() * excelium )).toFixed(2)}
+						return'\t$'+ (((corp_hyb_shafts() * excelium * exceliumFee))-(corp_hyb_shafts() * excelium )).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 			
 			}
@@ -289,31 +289,31 @@
 				
 				if (buildingType()==='residential'){
 					if(document.getElementById('standard').checked){
-						return '\t$'+ (((res_shafts() * standard * standardFee))).toFixed(2);}
+						return '\t$'+ (((res_shafts() * standard * standardFee))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					
 					else if (document.getElementById('premium').checked){
-						return '\t$'+ ((res_shafts() * premium * premiumFee)).toFixed(2)}
+						return '\t$'+ ((res_shafts() * premium * premiumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					
 					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((res_shafts() * excelium * exceliumFee)).toFixed(2)}
+						return '\t$'+ ((res_shafts() * excelium * exceliumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 
 				else if (buildingType()==='commercial'){
 					if(document.getElementById('standard').checked){
-						return '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2);}
+						return '\t$'+ (((com_shafts() * standard * standardFee))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2)}
+						return'\t$'+ ((com_shafts() * premium * premiumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('excelium').checked){
-						return '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2)}
+						return '\t$'+ ((com_shafts() * excelium * exceliumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 					
 				else if (buildingType()==='corporate' || buildingType()==='hybrid'){
 					if(document.getElementById('standard').checked){
-						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2);}
+						return'\t$'+ (((corp_hyb_shafts() * standard * standardFee))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('premium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2)}
+						return'\t$'+ ((corp_hyb_shafts() * premium * premiumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					else if (document.getElementById('excelium').checked){
-						return'\t$'+ ((corp_hyb_shafts() * excelium * exceliumFee)).toFixed(2)}
+						return'\t$'+ ((corp_hyb_shafts() * excelium * exceliumFee)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
 					}
 
 				
@@ -359,7 +359,7 @@
 		</div>
 		<!-- /SLIDE TOP -->
 
-
+		
 		<!-- wrapper -->
 		<div id="wrapper">
 
@@ -445,6 +445,7 @@
 
 
 			<section id="home">
+				<h1 class='center'>REQUEST A QUOTE</h1>
 					<!--selection box, to choose your option-->
 					<div class ='center col-md-4'>
 						<label for="">Choose your building type</label>
@@ -514,6 +515,7 @@
 				
 				<br><br><br>
 				<!--radio buttons to choose service level-->
+				<h3 class ='center'>SELECT ELEVATOR QUALITY</h2>
 				<div class ='center'>
 					<input type="radio" name="product-lines" id= 'standard' value="standard" onclick="display_service_cost()"> Standard
 					<input type="radio" name="product-lines" id= 'premium' value="premium" onclick="display_service_cost()"> Premium
