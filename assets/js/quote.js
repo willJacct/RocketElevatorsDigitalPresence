@@ -6,8 +6,68 @@ function buildingType(){ // selects the type of building ,saves into variable fo
     }
 
 
-// just shows/hides div elements based on drop down menu selection	
+
+
+
+// next functions grab and return the value from the inputs for the calculator
+function apts(){ 
+    return document.getElementById('apts').value;
+    //console.log(apts);
+    }
+
+function floors(){
+     return document.getElementById('floors').value;
+    console.log(floors);
+    //alert(floors);
+    }
+
+function basements(){
+    return document.getElementById('basements').value;
+    //console.log(basements);
+    }
+
+function biz(){
+    return document.getElementById('biz').value;
+    }
+
+function park(){
+    return document.getElementById('park').value;
+    }
+
+function com_shafts(){
+    return document.getElementById('com_shafts').value;
+    }
+
+function tenants(){
+    return document.getElementById('tenant').value;
+}
+
+function occupants(){
+    return document.getElementById('occupants').value;
+}
+function business_hours(){
+    return document.getElementById('hours').value;
+}
+
+function reset_forms(){
+
+    document.getElementById('apts').value= '';
+    document.getElementById('floors').value= '';
+    document.getElementById('basements').value= '';
+    document.getElementById('biz').value= '';
+    document.getElementById('park').value= '';
+    document.getElementById('com_shafts').value= '';
+    document.getElementById('tenant').value= '';
+    document.getElementById('occupants').value= '';
+    document.getElementById('hours').value= '';
+
+}
+
+// just shows/hides div elements based on drop down menu selection. It first resets the forms
 function display_forms (){
+    
+    reset_forms();
+
     if (buildingType()==='residential'){
         document.getElementById('number-of-corporations').style.display='none';
         document.getElementById('number-of-parking-spots').style.display='none';
@@ -56,47 +116,6 @@ function display_forms (){
 
 }
 
-
-// next functions grab and return the value from the inputs for the calculator
-function apts(){ 
-    return document.getElementById('apts').value;
-    //console.log(apts);
-    }
-
-function floors(){
-     return document.getElementById('floors').value;
-    console.log(floors);
-    //alert(floors);
-    }
-
-function basements(){
-    return document.getElementById('basements').value;
-    //console.log(basements);
-    }
-
-function biz(){
-    return document.getElementById('biz').value;
-    }
-
-function park(){
-    return document.getElementById('park').value;
-    }
-
-function com_shafts(){
-    return document.getElementById('com_shafts').value;
-    }
-
-function tenants(){
-    return document.getElementById('tenants').value;
-}
-
-function occupants(){
-    return document.getElementById('occupants').value;
-}
-function business_hours(){
-    return document.getElementById('hours').value;
-}
-
 //next 2 functions calculate the residential shafts
 function resElNumbers(){
     return apts()/floors();
@@ -107,6 +126,8 @@ function res_shafts(){
     var total = Math.ceil((apts()/floors())/6) * Math.ceil(floors()/20);
     return total;
     }
+
+
 
 //parseFloat (or int) is necessary or else the results will append, not add!!
 // calculates # of corporate or hybrid shafts needed
