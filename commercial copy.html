@@ -27,40 +27,10 @@
 		<!-- PAGE LEVEL SCRIPTS -->
 		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/color_scheme/blue.css" rel="stylesheet" type="text/css" id="color_scheme" />
-	<style>
-
-		.hide_sec {
-				display:none;
-		}
-
-		.center {
-
-				margin: auto;
-				width: 60%;
-				padding: 5px;
-
-		}
-
-			input { 
-			border: 2px solid #aaa;
-			border-radius: 4px;
-			
-			padding: 8px;
-			box-sizing: border-box;
-			transition: 0.3s;
-		}
-
-		input:focus, input:hover {
-			border-color: dodgerblue;
-			box-shadow: 0 0 8px 0 dodgerblue;
-		}
-
-	</style>
-	<script src='assets/js/quote.js'></script>
 	</head>
 
 	
-	<body>
+	<body >
 
 		<!-- SLIDE TOP -->
 		<div id="slidetop">
@@ -98,7 +68,32 @@
 		<!-- wrapper -->
 		<div id="wrapper">
 
-		
+			<!-- 
+				AVAILABLE HEADER CLASSES
+
+				Default nav height: 96px
+				.header-md 		= 70px nav height
+				.header-sm 		= 60px nav height
+
+				.b-0 		= remove bottom border (only with transparent use)
+				.transparent	= transparent header
+				.translucent	= translucent header
+				.sticky			= sticky header
+				.static			= static header
+				.dark			= dark header
+				.bottom			= header on bottom
+				
+				shadow-before-1 = shadow 1 header top
+				shadow-after-1 	= shadow 1 header bottom
+				shadow-before-2 = shadow 2 header top
+				shadow-after-2 	= shadow 2 header bottom
+				shadow-before-3 = shadow 3 header top
+				shadow-after-3 	= shadow 3 header bottom
+
+				.clearfix		= required for mobile menu, do not remove!
+
+				Example Usage:  class="clearfix sticky header-sm transparent b-0"
+			-->
 			<div id="header" class="navbar-toggleable-md sticky header-md clearfix">
 
 				<!-- TOP NAV -->
@@ -142,7 +137,7 @@
 										</a>
 											<ul class='dropdown-menu'>
 												<li> <a class='dropdown-item' href='residential.html'>Residential</a></li>
-												<li> <a class='dropdown-item' href='commercial.html'>Commercial</a></li>
+												<li> <a class='dropdown-item' href='#top'>Commercial</a></li>
 											</ul>
 									</li>
 									<li><!-- WORK -->
@@ -180,149 +175,24 @@
 
 
 			<section id="home">
-				
-					<h1 class='center'>REQUEST A QUOTE</h1>
-						<!--selection box, to choose your option-->
-						<div class ='center col-md-4'>
-							<label for="">Choose your building type</label>
-							<select id ='building-type' onchange="display_forms()" >
-								<option id= 'default' value='default'>-Pick Option-</option>
-								<option id='residential' value="residential">Residential</option>
-								<option id ='commercial' value="commercial">Commercial</option>
-								<option id = 'corporate' value="corporate">Corporate</option>
-								<option id ='hybrid'	 value="hybrid">Hybrid</option>
-							</select>
-						</div>
-					<br><br>
-	
-				
-					<!-- Input divs for each element that needs to be collected-->
-					<div id ='quotes'>
-						<div id ='number-of-apartments' class='hide_sec center'>
-							<label for="apts">Number of Apartments:</label>
-							<input type="number" id="apts" name="apts"> 
-							<!--<button onclick="apts()">Click to set # of apartments</button>-->
-						</div>
-						<div id ='number-of-floors' class='hide_sec center' >
-							<label for="floors">Number of Floors:</label>
-							<input type="number" id="floors" name="floors"> 
-							<!--<button onclick="floors()">Click to set # of floors</button>-->
-						</div>
-						<div id ='number-of-basements'class='hide_sec center'>
-							<label for="basements">Number of Basements:</label>
-							<input type="number" id="basements" name="basements"> 
-							<!--<button onclick="basements()">Click to set # of basements</button>-->
-						</div>
-						<div id ='number-of-corporations' class='hide_sec center'>
-							<label for="biz">Number of Unique Businesses:</label>
-							<input type="number" id="biz" name="biz"> 
-							<!--<button onclick="biz()">Click to set # of unique businesses</button>-->
-						</div>
-						<br><br><br>
-						<div id='number-of-parking-spots' class='hide_sec center'>
-							<label for="park">Number of Parking Spaces:</label>
-							<input type="number" id="park" name="park"> 
-							<!--<button onclick="park()">Click to set # of parking spaces</button>-->
-						</div>
-						<div id ='number-of-elevators' class='hide_sec center'>
-							<label for="com_shafts">Number of Elevators Shafts/Cages:</label>
-							<input type="number" id="com_shafts" name="com_shafts"> 
-							<!--<button onclick="com_shafts()">Click to set # of elevators/cages</button>-->
-						</div>
-						
-						<div id ='number-of-companies' class='hide_sec center'>
-							<label for="tenants">Number of Separate Tenant Companies:</label>
-							<input type="number" id="tenant" name="tenants"> 
-							<!--<button onclick="tenants()">Click to set # of separate tenant companies</button>-->
-						</div>
-						
-						
-						<div id ='maximum-occupancy' class='hide_sec center'>
-							<label for="occupants">Number of Occupants per Floor:</label>
-							<input type="number" id="occupants" name="occupants"> 
-						<!--	<button onclick="occupants()">Click to set # of occupants per floor</button>-->
-						</div>
-						<div id ='business-hours' class='hide_sec center'>
-							<label for="hours">Number of Open Hours:</label>
-							<input type="number" id="hours" name="hours" max ='24'> 
-						<!--	<button onclick="occupants()">Click to set # of open business hours (max 24)</button>-->
-						</div>
-					
-					
-					<br><br><br>
-					<!--radio buttons to choose service level-->
-					<h3 class ='center'>SELECT ELEVATOR QUALITY</h2>
-					<div class ='center'>
-						<input type="radio" name="product-lines" id= 'standard' value="standard" onclick="display_service_cost()"> Standard
-						<input type="radio" name="product-lines" id= 'premium' value="premium" onclick="display_service_cost()"> Premium
-						<input type="radio" name="product-lines" id= 'excelium' value="excelium" onclick="display_service_cost()"> Excelium
-					
-					</div>
-					
-					<br><br>
-					<!-- read only fields displaying the calculations-->
-					<div class='row justify-content-center'>
-						<div id="elevator-amount" class='col'>
-							<label>N. of Elevators</label>
-							<input type='text' readonly id='elevators'>
-						</div>
-	
-						<div id="elevator-unit-price" class='col'>
-							<label>Cost Per Elevator</label>
-							<input type='text' readonly id='elprice'>
-						</div>
-	
-					<div id="elevator-total-price" class='col'>
-							<label>Total Price of Elevators</label>
-							<input type='text' readonly id ='elcost'>
-						</div>
-	
-						<div id="installation-fees" class='col'>
-							<label>Installation Fees</label>
-							<input type='text' readonly id ='fees'>
-						</div>
-	
-						<div id="final-price" class='col'>
-							<label>Final Estimated Price</label>
-							<input type='text' id ='total' readonly>
-					</div>
-	
-					</div>
-				<br><br>
-				</section>	
-			<script>
-	
-				// event listener which updates the readonly fields
-				// I got errors when I removed this from the bottom of the page and put it with the 
-				// rest of the JS, so i'll leave it here for now
-			
-				var final = document.getElementById('quotes');
-				
-				final.addEventListener("input", function(e) {
-					
-					document.getElementById('elevators').value = num_elevators();
-					document.getElementById('elprice').value = el_price();
-					document.getElementById('total').value = display_service_cost();
-					document.getElementById('elcost').value = el_costs();
-					document.getElementById('fees').value = install_fee_display();
-				}, false);
-			</script>
-					
+					<h1 align='center'>Corporate and Commercial Services</h1>
+					<p align='center'>With over 40 years of experience, Rocket Elevators has worked on some of the most
+						impressive corporate and commercial elevator systems in the world!
+						<br><br>Our team of experienced engineers will be able to custom build a beautiful elevator system for your building,
+						<br> or you may choose an off-the-shelf model. Whatever your needs, we are able to provide!  <br><br>
+					<img src='assets/images/corp_el1.jpg' width='60%' height='auto'><br><br>
+					<img src='assets/images/corp_el2.jpg' width='60%' height='auto'><br><br>
+					<img src='assets/images/corp_el3.jpg' width='60%' height='auto'></p>
+						<br><br>
+						<h2 align='center'>Please contact us with any questions or to book an appointment with <br>
+							one of our experienced elevator solution engineers!</h2>
+							<p align='center'><br> We strive to provide efficient, friendly service while also remaining
+							competitive on pricing!</p>
 
 			<hr class="m-0" /><!-- 1px line separator -->
+			</section>
 
 
-			<!-- BUTTON CALLOUT -->
-			
-			<!-- /BUTTON CALLOUT -->
-
-
-			
-			<!-- Services -->
-			
-			<!-- /Services -->
-
-			
 
 
 			<!-- Parallax -->
@@ -341,6 +211,7 @@
 				</div>
 			</section>
 			<!-- /Parallax -->
+
 
 
 
@@ -364,7 +235,29 @@
 							<h3>Drop us a line or just say <strong><em>Hello!</em></strong></h3>
 
 							
-							
+							<!--
+								MESSAGES
+								
+									How it works?
+									The form data is posted to php/contact.php where the fields are verified!
+									php.contact.php will redirect back here and will add a hash to the end of the URL:
+										#alert_success 		= email sent
+										#alert_failed		= email not sent - internal server error (404 error or SMTP problem)
+										#alert_mandatory	= email not sent - required fields empty
+										Hashes are handled by assets/js/contact.js
+
+									Form data: required to be an array. Example:
+										contact[email][required]  WHERE: [email] = field name, [required] = only if this field is required (PHP will check this)
+										Also, add `required` to input fields if is a mandatory field. 
+										Example: <input required type="email" value="" class="form-control" name="contact[email][required]">
+
+									PLEASE NOTE: IF YOU WANT TO ADD OR REMOVE FIELDS (EXCEPT CAPTCHA), JUST EDIT THE HTML CODE, NO NEED TO EDIT php/contact.php or javascript
+												 ALL FIELDS ARE DETECTED DINAMICALY BY THE PHP
+
+									WARNING! Do not change the `email` and `name`!
+												contact[name][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
+												contact[email][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
+							-->
 
 							<!-- Alert Success -->
 							<div id="alert_success" class="alert alert-success mb-30">
@@ -547,7 +440,7 @@
 		<script src="assets/js/scripts.js"></script>
 		
 		<!-- STYLESWITCHER - REMOVE -->
-	
+		
 
 		<!-- REVOLUTION SLIDER -->
 		<script src="assets/plugins/slider.revolution/js/jquery.themepunch.tools.min.js"></script>
@@ -557,6 +450,10 @@
 		<!-- PAGELEVEL SCRIPTS -->
 		<script src="assets/js/contact.js"></script>
 
+		<!-- 
+			GMAP.JS 
+			http://hpneo.github.io/gmaps/
+		-->
 	
 	</body>
 </html>
